@@ -108,8 +108,8 @@ namespace GitHub.Runner.Worker
                 container.ContainerNetwork = containerNetwork;
                 await StartContainerAsync(executionContext, container);
             }
-            // TODO: conditional logic
-            //await RunContainersHealthcheck(executionContext, containers);
+            
+            await RunContainersHealthcheck(executionContext, containers);
         }
 
         public async Task RunContainersHealthcheck(IExecutionContext executionContext, List<ContainerInfo> containers)
@@ -164,8 +164,9 @@ namespace GitHub.Runner.Worker
             {
                 await StopContainerAsync(executionContext, container);
             }
+            // TODO: conditional
             // Remove the container network
-            await RemoveContainerNetworkAsync(executionContext, containers.First().ContainerNetwork);
+            //await RemoveContainerNetworkAsync(executionContext, containers.First().ContainerNetwork);
         }
 
         private async Task StartContainerAsync(IExecutionContext executionContext, ContainerInfo container)
