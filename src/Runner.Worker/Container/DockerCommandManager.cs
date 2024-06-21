@@ -116,7 +116,7 @@ namespace GitHub.Runner.Worker.Container
             // TODO: pull opts from env
             dockerOptions.Add("--privileged");
             dockerOptions.Add("--cgroupns host");
-            dockerOptions.Add("--userns host");
+            dockerOptions.Add("--userns keep-id");
             if (!string.IsNullOrEmpty(container.ContainerWorkDirectory))
             {
                 dockerOptions.Add($"--workdir {container.ContainerWorkDirectory}");
