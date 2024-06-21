@@ -44,7 +44,7 @@ RUN adduser --disabled-password --gecos "" --uid 1001 runner \
 
 COPY <<EOF /usr/bin/docker
 #!/usr/bin/env bash
-sudo podman "$@"
+sudo podman "\$@"
 EOF
 RUN chmod +x /usr/bin/docker
 
