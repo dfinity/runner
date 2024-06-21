@@ -30,7 +30,7 @@ ENV ImageOS=ubuntu24
 
 # 'gpg-agent' and 'software-properties-common' are needed for the 'add-apt-repository' command that follows
 RUN apt update -y \
-    && apt install -y --no-install-recommends sudo lsb-release gpg-agent software-properties-common podman podman-docker uidmap \
+    && apt install -y --no-install-recommends sudo lsb-release gpg-agent software-properties-common podman \
     && rm -rf /var/lib/apt/lists/*
 
 # Configure git-core/ppa based on guidance here:  https://git-scm.com/download/linux
@@ -41,6 +41,12 @@ RUN adduser --disabled-password --gecos "" --uid 1001 runner \
     && usermod -aG sudo runner \
     && echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
     && echo "Defaults env_keep += \"DEBIAN_FRONTEND\"" >> /etc/sudoers
+
+COPY <<EOF /usr/bin/docker
+#!/usr/bin/env bash
+sudo podman "$@"
+EOF
+RUN chmod +x /usr/bin/docker
 
 WORKDIR /home/runner
 
