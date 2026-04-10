@@ -7,7 +7,7 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v9
+      - uses: actions/stale@5bef64f19d7facfb25b37b414482c7164d639639 # v9.1.0
         with:
           close-issue-message: "This issue does not seem to be a problem with the runner application, it concerns the GitHub actions platform more generally. Could you please post your feedback on the [GitHub Community Support Forum](https://github.com/orgs/community/discussions/categories/actions) which is actively monitored. Using the forum ensures that we route your problem to the correct team. 😃"
           exempt-issue-labels: "keep"
